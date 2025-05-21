@@ -1,7 +1,8 @@
 import React from 'react';
 import Container from '../ui/Container';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Linkedin } from 'lucide-react';
 import AshishPhoto from '../../assets/ashish.jpeg';
+
 const About = () => {
   const values = [
     "Professional excellence in all we do",
@@ -60,19 +61,32 @@ const About = () => {
                 />
               </div>
               <div className="lg:col-span-2">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">CA Ashish Lodha</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <h3 className="text-2xl font-semibold text-gray-900">CA Ashish Lodha</h3>
+                  <a 
+                    href="https://www.linkedin.com/in/ca-ashish-lodha-937b4a86/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    <Linkedin size={24} />
+                  </a>
+                </div>
                 <p className="text-lg text-gray-600 mb-4">
-                  A dynamic and results-driven Chartered Accountant with over a decade of experience in Finance, Accounting, and Global Operations. Currently serving as Head of Operations at Prudent ProSource, CA Ashish Lodha brings a strong track record in optimizing workflows, leading high-performing teams, and driving strategic financial initiatives across international markets.
+                CA Ashish Lodha is a distinguished Chartered Accountant (equivalent to CPA) and a recognized authority in the global outsourcing industry, with over a decade of expertise spanning Finance, Accounting, and International Business Operations. With a proven record of optimizing complex workflows and leading high-performing, cross-functional teams, Ashish has been instrumental in driving transformation for businesses across the USA, UK, Canada, and Australia.
                 </p>
               </div>
             </div>
             
             <div className="space-y-4 text-gray-600">
               <p>
-                With specialized expertise in onboarding & transition, migrations, controllership, and CFO-level functions, Ashish excels in streamlining finance functions, implementing advanced reporting systems, and enabling data-driven decision-making for business growth. His hands-on leadership style, deep understanding of global accounting standards (US GAAP, IFRS, Indian AS), and proven success in scaling white-label services make him a trusted partner for CPAs, entrepreneurs, and global firms.
+              Renowned for his mastery in client onboarding and transitions, controllership services, and CFO-level advisory, Ashish blends deep technical knowledge with strategic foresight. His command over a wide spectrum of accounting platforms — including QuickBooks (Online & Desktop), Xero, NetSuite, Sage, Zoho Books, and various payroll, project management, and reporting tools — positions him as a go-to expert for CPA firms and growth-focused entrepreneurs.
               </p>
               <p>
-                Ashish is also known for his strong client-centric approach, excellence in managing cross-cultural teams, and ability to deliver measurable business impact through operational innovation and financial foresight.
+              Ashish’s leadership is marked by a hands-on, client-first approach and a sharp ability to tailor scalable financial systems that align with business goals. His fluency in US GAAP, IFRS, and Indian Accounting Standards enables seamless global compliance and advisory support, making him a sought-after partner for white-label finance solutions and offshore accounting excellence.
+              </p>
+              <p>
+              A visionary in outsourced finance transformation, Ashish continues to champion innovation, efficiency, and long-term client success across the global accounting landscape.
               </p>
             </div>
           </div>

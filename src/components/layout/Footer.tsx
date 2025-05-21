@@ -59,7 +59,7 @@ const Footer = () => {
               <p>100 Business Park Ln</p>
               <p>Milton, DE 19968, US</p>
               <p>Email: info@anantixaccounting.com</p>
-              <p>Phone: +1 469 341 8020</p>
+              <p>Phone: +1 469 444 7874</p>
             </address>
           </div>
         </div>

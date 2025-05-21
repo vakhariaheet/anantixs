@@ -39,7 +39,7 @@ const Contact = () => {
     {
       icon: <Phone className="text-primary-600" size={24} />,
       title: "Call Us",
-      details: "+1 469 341 8020"
+      details: "+1 469 444 7874"
     },
     {
       icon: <MapPin className="text-primary-600" size={24} />,
