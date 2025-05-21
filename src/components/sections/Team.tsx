@@ -1,67 +1,104 @@
 import React from 'react';
 import Container from '../ui/Container';
-import { Linkedin, Twitter } from 'lucide-react';
+import { Users, BarChart, Calculator, FileText } from 'lucide-react';
+import Sarah from '../../assets/sarah.jpg';
+import Emily from '../../assets/Emily.jpg';
+import Lisa from '../../assets/lisa.jpg';
+import Robert from '../../assets/robert.jpg';
+import Michael from '../../assets/michael.jpg';
+import David from '../../assets/david.jpg';
+import James from '../../assets/james.jpg';
+interface Division {
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  team: TeamMember[];
+}
 
 interface TeamMember {
   name: string;
   position: string;
-  bio: string;
   image: string;
   specializations: string[];
-  credentials: string[];
-  social: {
-    linkedin?: string;
-    twitter?: string;
-  };
 }
 
 const Team = () => {
-  const teamMembers: TeamMember[] = [
+  const divisions: Division[] = [
     {
-      name: "Sarah Anderson, CPA",
-      position: "Managing Director",
-      bio: "With over 15 years of experience in public accounting, Sarah leads our team with expertise in strategic financial planning and tax optimization. Her innovative approach helps clients navigate complex financial landscapes while maximizing growth opportunities.",
-      image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=400",
-      specializations: ["Strategic Planning", "Tax Strategy", "Business Advisory"],
-      credentials: ["Certified Public Accountant", "MBA in Finance"],
-      social: {
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com"
-      }
+      name: "Controller Division",
+      description: "Overseeing financial operations and ensuring regulatory compliance across all business activities.",
+      icon: <Users size={24} className="text-primary-600" />,
+      team: [
+        {
+          name: "Jennifer Martinez",
+          position: "Head Controller",
+          image: "https://img.freepik.com/free-photo/young-businesswoman-holding-digital-tablet-mobile-phone_329181-11723.jpg?semt=ais_hybrid&w=400",
+          specializations: ["Financial Control", "Risk Management", "Compliance"]
+        },
+        {
+          name: "Robert Chen",
+          position: "Assistant Controller",
+          image: Robert,
+          specializations: ["Internal Controls", "Financial Reporting", "Audit"]
+        }
+      ]
     },
     {
-      name: "Michael Chen, MBA",
-      position: "Tax Director",
-      bio: "Michael brings a decade of specialized experience in corporate taxation and international tax planning. His detailed understanding of tax legislation helps clients optimize their tax positions while ensuring full compliance.",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
-      specializations: ["Corporate Taxation", "International Tax", "Tax Planning"],
-      credentials: ["MBA", "Certified Tax Specialist"],
-      social: {
-        linkedin: "https://linkedin.com"
-      }
+      name: "CFO Division",
+      description: "Strategic financial planning and analysis to drive business growth and optimization.",
+      icon: <BarChart size={24} className="text-primary-600" />,
+      team: [
+        {
+          name: "Sarah Anderson",
+          position: "Chief Financial Officer",
+          image: Sarah,
+          specializations: ["Strategic Planning", "Financial Strategy", "Risk Management"]
+        },
+        {
+          name: "Michael Thompson",
+          position: "Financial Analyst",
+          image: Michael,
+          specializations: ["Financial Analysis", "Forecasting", "Budgeting"]
+        }
+      ]
     },
     {
-      name: "Emily Rodriguez, CPA",
-      position: "Audit Manager",
-      bio: "Emily excels in audit and assurance services with particular expertise in nonprofit and healthcare sectors. Her methodical approach ensures thorough financial oversight while identifying opportunities for operational improvement.",
-      image: "https://images.pexels.com/photos/2381068/pexels-photo-2381068.jpeg?auto=compress&cs=tinysrgb&w=400",
-      specializations: ["Audit & Assurance", "Nonprofit Accounting", "Healthcare"],
-      credentials: ["Certified Public Accountant", "Certified Internal Auditor"],
-      social: {
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com"
-      }
+      name: "Accounting Division",
+      description: "Maintaining accurate financial records and providing comprehensive accounting services.",
+      icon: <Calculator size={24} className="text-primary-600" />,
+      team: [
+        {
+          name: "Emily Rodriguez",
+          position: "Senior Accountant",
+          image: Emily,
+          specializations: ["Bookkeeping", "Financial Statements", "Reconciliation"]
+        },
+        {
+          name: "David Lee",
+          position: "Staff Accountant",
+          image: David,
+          specializations: ["Accounts Payable", "Accounts Receivable", "Payroll"]
+        }
+      ]
     },
     {
-      name: "David Thompson",
-      position: "Advisory Services Lead",
-      bio: "David specializes in business advisory and financial consulting, helping companies optimize their operations and achieve sustainable growth. His strategic insights have helped numerous businesses transform challenges into opportunities.",
-      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400",
-      specializations: ["Business Advisory", "Financial Consulting", "Risk Management"],
-      credentials: ["Certified Financial Analyst", "Business Advisory Specialist"],
-      social: {
-        linkedin: "https://linkedin.com"
-      }
+      name: "Tax Division",
+      description: "Expert tax planning and compliance services for businesses and individuals.",
+      icon: <FileText size={24} className="text-primary-600" />,
+      team: [
+        {
+          name: "James Wilson",
+          position: "Tax Director",
+          image: James,
+          specializations: ["Tax Planning", "International Tax", "Compliance"]
+        },
+        {
+          name: "Lisa Chang",
+          position: "Tax Specialist",
+          image: Lisa,
+          specializations: ["Individual Tax", "Corporate Tax", "Tax Research"]
+        }
+      ]
     }
   ];
 
@@ -71,78 +108,52 @@ const Team = () => {
         <div className="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Team</h2>
           <p className="text-lg text-gray-600">
-            Meet our dedicated team of financial experts committed to your success
+            Meet our dedicated divisions and the professionals who make excellence possible
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <div
-              key={member.name}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2"
+        <div className="space-y-16">
+          {divisions.map((division, index) => (
+            <div 
+              key={division.name}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-primary-600 font-medium mb-3">{member.position}</p>
-                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Specializations</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {member.specializations.map((spec) => (
-                      <span
-                        key={spec}
-                        className="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-full"
-                      >
-                        {spec}
-                      </span>
-                    ))}
+              <div className="p-6 md:p-8 border-b border-gray-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 bg-primary-50 rounded-lg">
+                    {division.icon}
                   </div>
+                  <h3 className="text-2xl font-bold text-gray-900">{division.name}</h3>
                 </div>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Credentials</h4>
-                  <ul className="text-sm text-gray-600">
-                    {member.credentials.map((credential) => (
-                      <li key={credential} className="mb-1">• {credential}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex space-x-3">
-                  {member.social.linkedin && (
-                    <a
-                      href={member.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-primary-600 transition-colors"
-                      aria-label={`${member.name}'s LinkedIn profile`}
-                    >
-                      <Linkedin size={20} />
-                    </a>
-                  )}
-                  {member.social.twitter && (
-                    <a
-                      href={member.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-primary-600 transition-colors"
-                      aria-label={`${member.name}'s Twitter profile`}
-                    >
-                      <Twitter size={20} />
-                    </a>
-                  )}
-                </div>
+                <p className="text-gray-600">{division.description}</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
+                {division.team.map((member) => (
+                  <div key={member.name} className="flex gap-4 items-start">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-20 h-20 rounded-lg object-cover"
+                    />
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900">{member.name}</h4>
+                      <p className="text-primary-600 mb-2">{member.position}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {member.specializations.map((spec) => (
+                          <span
+                            key={spec}
+                            className="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-full"
+                          >
+                            {spec}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
