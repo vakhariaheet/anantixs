@@ -78,10 +78,6 @@ const Testimonials = () => {
                 {testimonials[currentIndex].content}
               </p>
               
-              <div className="transition-opacity duration-300">
-                <p className="font-semibold text-lg">{testimonials[currentIndex].author}</p>
-                <p className="opacity-80">{testimonials[currentIndex].position}</p>
-              </div>
             </div>
           </div>
           
