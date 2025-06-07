@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface ContactInfo {
   icon: React.ReactNode;
   title: string;
   details: string;
+}
+
+interface SocialLink {
+  icon: React.ReactNode;
+  href: string;
+  label: string;
 }
 
 const Contact = () => {
@@ -22,12 +29,31 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would handle form submission here
-    console.log('Form data submitted:', formData);
-    alert('Thanks for contacting us! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    try {
+      // In a real application, you would handle form submission here
+      console.log('Form data submitted:', formData);
+      
+      // Show loading toast
+      const loadingToast = toast.loading('Sending your message...');
+      
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Success toast
+      toast.success('Thanks for contacting us! We will get back to you soon.', {
+        duration: 5000,
+        id: loadingToast
+      });
+      
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      // Error toast
+      toast.error('Failed to send message. Please try again later.', {
+        duration: 5000
+      });
+    }
   };
 
   const contactInfo: ContactInfo[] = [
@@ -94,6 +120,48 @@ const Contact = () => {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div className="mt-8">
+              <h4 className="text-lg font-medium text-gray-900 mb-4">Connect With Us</h4>
+              <div className="flex space-x-4">
+                <a
+                  href="https://facebook.com/anantixaccounting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="text-primary-600" size={24} />
+                </a>
+                <a
+                  href="https://twitter.com/anantixacc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="text-primary-600" size={24} />
+                </a>
+                <a
+                  href="https://linkedin.com/company/anantix-accounting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="text-primary-600" size={24} />
+                </a>
+                <a
+                  href="https://instagram.com/anantixaccounting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="text-primary-600" size={24} />
+                </a>
+              </div>
             </div>
           </div>
           
