@@ -23,6 +23,26 @@ const Header = () => {
 
   const isHomePage = location.pathname === '/';
 
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  const navigationItems = isHomePage 
+    ? ['Home', 'Services', 'About Us', 'Contact'].map(item => ({
+        label: item,
+        path: `#${item.toLowerCase().replace(' ', '-')}`,
+        isHashLink: true
+      }))
+    : [{ label: 'Back to Home', path: '/', isHashLink: false }];
+    
+  // Add Careers link to navigation
+  location.pathname === '/' && navigationItems.push({
+    label: 'Careers',
+    path: '/careers',
+    isHashLink: false
+  });
+
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -39,27 +59,28 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {isHomePage ? (
-              ['Home', 'Services', 'About Us', 'Contact'].map((item) => (
+            {navigationItems.map((item) => (
+              item.isHashLink ? (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  key={item.label}
+                  href={item.path}
                   className="text-gray-800 hover:text-primary-600 font-medium transition-colors text-base px-2 py-1"
                 >
-                  {item}
+                  {item.label}
                 </a>
-              ))
-            ) : (
-              <Link
-                to="/"
-                className="text-gray-800 hover:text-primary-600 font-medium transition-colors text-base px-2 py-1"
-              >
-                Back to Home
-              </Link>
-            )}
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.path}
+                  className="text-gray-800 hover:text-primary-600 font-medium transition-colors text-base px-2 py-1"
+                >
+                  {item.label}
+                </Link>
+              )
+            ))}
 
-           {isHomePage && (
-                <a
+            {isHomePage && (
+              <a
                 href="#contact"
                 className="bg-primary-600 text-white px-6 py-2.5 rounded-md hover:bg-primary-700 transition-colors text-base font-medium"
               >
@@ -89,57 +110,54 @@ const Header = () => {
 
       {/* Mobile and Tablet Navigation Menu */}
       <div
-        className={`fixed right-0 top-0 h-full w-full md:w-80 bg-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 h-full w-64 bg-white transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-4 border-b">
-            <Link to="/" onClick={toggleMenu}>
-              <Logo />
-            </Link>
+        <div className="p-6">
+          <div className="flex justify-end mb-8">
             <button
-              className="text-gray-800 hover:text-primary-600 transition-colors p-2"
               onClick={toggleMenu}
+              className="text-gray-800 hover:text-primary-600 transition-colors"
               aria-label="Close menu"
             >
               <X size={24} />
             </button>
           </div>
-
-          <nav className="flex flex-col p-4 space-y-4">
-            {isHomePage ? (
-              ['Home', 'Services', 'About Us', 'Contact'].map((item) => (
+          <ul className="space-y-4">
+            {navigationItems.map((item) => (
+              <li key={item.label}>
+                {item.isHashLink ? (
+                  <a
+                    href={item.path}
+                    className="text-gray-800 hover:text-primary-600 font-medium transition-colors text-base block py-2"
+                    onClick={toggleMenu}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className="text-gray-800 hover:text-primary-600 font-medium transition-colors text-base block py-2"
+                    onClick={toggleMenu}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+            {isHomePage && (
+              <li>
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="flex items-center text-gray-800 hover:text-primary-600 transition-colors py-3 px-4 text-lg font-medium rounded-md hover:bg-gray-50"
+                  href="#contact"
+                  className="bg-primary-600 text-white px-6 py-2.5 rounded-md hover:bg-primary-700 transition-colors text-base font-medium block text-center mt-4"
                   onClick={toggleMenu}
                 >
-                  {item}
+                  Get Started
                 </a>
-              ))
-            ) : (
-              <Link
-                to="/"
-                className="flex items-center text-gray-800 hover:text-primary-600 transition-colors py-3 px-4 text-lg font-medium rounded-md hover:bg-gray-50"
-                onClick={toggleMenu}
-              >
-                Back to Home
-              </Link>
+              </li>
             )}
-          </nav>
-
-          {isHomePage && <div className="mt-auto p-4 border-t">
-            <a
-              href="#contact"
-              className="w-full bg-primary-600 text-white px-6 py-3 rounded-md hover:bg-primary-700 transition-colors text-base font-medium"
-              onClick={
-                toggleMenu}
-            >
-              Get Started
-            </a>
-          </div>}
+          </ul>
         </div>
       </div>
     </header>
