@@ -135,7 +135,7 @@ const Contact = () => {
                   <Facebook className="text-primary-600" size={24} />
                 </a>
                 <a
-                  href="https://twitter.com/anantixacc"
+                  href="https://x.com/AnantixAcct"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
@@ -144,7 +144,7 @@ const Contact = () => {
                   <Twitter className="text-primary-600" size={24} />
                 </a>
                 <a
-                  href="https://linkedin.com/company/anantix-accounting"
+                  href="https://www.linkedin.com/company/anantix-accounting/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"
@@ -153,7 +153,7 @@ const Contact = () => {
                   <Linkedin className="text-primary-600" size={24} />
                 </a>
                 <a
-                  href="https://instagram.com/anantixaccounting"
+                  href="https://www.instagram.com/anantixaccounting"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-primary-100 rounded-full hover:bg-primary-200 transition-colors"

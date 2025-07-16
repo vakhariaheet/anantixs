@@ -14,6 +14,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <div className='flex justify-center p-3 items-center gap-2 bg-white text-gray-600'>
+        <p className='flex gap-1 items-center'>
+          Created and Designed by{' '}
+          <a href='https://webbound.dev'>
+            <img
+              src='/assets/webbound.png'
+              className='w-auto h-3'
+              alt='WebBound'
+            />
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
